@@ -25,9 +25,18 @@ public class MainApp {
 		try {
 			session.beginTransaction();
 			
-			Query query = session.createQuery("select Max(id) from Employee");
-			System.out.println(query.list().toString());
-
+			Query q1 = session.createQuery("select Max(id) from Employee");
+			Query q2 = session.createQuery("select Min(id) from Employee");
+			Query q3 = session.createQuery("select sum(age) from Employee");
+			Query q4 = session.createQuery("select count(address) from Employee");
+			Query q5 = session.createQuery("select count(distinct address) from Employee");
+			
+			System.out.println("Max " +q1.list().get(0));
+			System.out.println("Min " + q2.list().get(0));
+			System.out.println("Sum " + q3.list().get(0));
+			System.out.println("Count " + q4.list().get(0));
+			System.out.println("Count Distinct " + q5.list().get(0));
+			
 			session.getTransaction().commit();
 			
 		}catch(Exception e) {
