@@ -22,19 +22,28 @@ public class MainApp {
 		
 		// TO Save Object
 		// Declare Object
-		Employee emp = new Employee();
-		emp.setFullName("Ahmed Elsheikh");
-		emp.setAge(25);
-		emp.setAddress("Cairo");
+//		Employee emp = new Employee("Mostafa Mahmoud", 40, "Giza");
+//		emp.setFullName("Ahmed Elsheikh");
+//		emp.setAge(25);
+//		emp.setAddress("Cairo");
 		
+		long id = 1;
 	
 	try {
 		// begin transaction
 		session.beginTransaction();
+		// Update EMployee
+		Employee emp = new Employee("Amira Ahmed", 25, "Egypt");
+		emp.setId(id);
+		session.update(emp);
+		// To Get Employee By ID
+//		Employee emp = session.get(Employee.class, id);
+
 		// save object
-		session.save(emp);
+//		session.save(emp);
 		// commmit transaction
 		session.getTransaction().commit();
+		System.out.println("FullName: " +emp.getFullName() + " " + "Address: "+ emp.getAddress());
 	}catch(Exception e) {
 		System.out.println(e.toString());
 	}finally {

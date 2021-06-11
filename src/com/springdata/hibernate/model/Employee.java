@@ -22,12 +22,20 @@ public class Employee {
 	@Column(name="age")
 	private int age;
 	
+	public Employee(String fullName, int age, String address) {
+		super();
+		this.fullName = fullName;
+		this.age = age;
+		this.address = address;
+	}
+
 	@Column(name="address")
 	private String address;
 
 	public Employee() {
 		super();
 	}
+	
 
 	public Long getId() {
 		return id;
