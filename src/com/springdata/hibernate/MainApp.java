@@ -22,10 +22,8 @@ public class MainApp {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			List<Employee> emps = session.createQuery("from Employee emp where fullName like '%A%'").list();
-			for(int i=0; i<emps.size(); i++) {
-				System.out.println(emps.get(i).getFullName());
-			}
+			 session.createQuery("update Employee emp set fullName= 'Ahmed Mohamed' where emp.id=1 ").executeUpdate();
+			
 			
 			session.getTransaction().commit();
 			
