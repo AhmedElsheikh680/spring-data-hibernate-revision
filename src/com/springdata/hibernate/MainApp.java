@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import com.springdata.hibernate.model.Employee;
@@ -26,8 +27,7 @@ public class MainApp {
 		try {
 			session.beginTransaction();
 			Criteria criteria = session.createCriteria(Employee.class);
-			criteria.setFirstResult(0);
-			criteria.setMaxResults(5);
+			criteria.add(Restrictions.gt("id", (long) 3));
 			List<Employee> emps = criteria.list();
 			for(Employee e : emps) {
 				System.out.println(e.getFullName());
