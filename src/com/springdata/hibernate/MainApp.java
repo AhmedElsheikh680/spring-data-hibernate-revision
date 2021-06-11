@@ -22,8 +22,7 @@ public class MainApp {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			 session.createQuery("update Employee emp set fullName= 'Ahmed Mohamed' where emp.id=1 ").executeUpdate();
-			
+			session.createQuery("delete from Employee emp where emp.id=2").executeUpdate();
 			
 			session.getTransaction().commit();
 			
