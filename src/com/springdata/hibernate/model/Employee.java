@@ -1,13 +1,28 @@
 package com.springdata.hibernate.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="employee")
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	
+	@Column(name="full_name")
 	private String fullName;
 	
+	@Column(name="age")
 	private int age;
 	
+	@Column(name="address")
 	private String address;
 
 	public Employee() {
