@@ -23,7 +23,7 @@ public class MainApp {
 		try {
 			session.beginTransaction();
 			List<Employee> emps = session.createQuery("from Employee emp where emp.age = 25"+
-			" OR emp.address = 'Tanta'").list();
+			" AND emp.address = 'Egypt'").list();
 			for(int i=0; i<emps.size(); i++) {
 				System.out.println(emps.get(i).getFullName());
 			}
