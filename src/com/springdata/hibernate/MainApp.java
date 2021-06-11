@@ -28,7 +28,7 @@ public class MainApp {
 			Long [] ids = {(long) 1, (long)4, (long) 9};
 			session.beginTransaction();
 			Criteria criteria =  session.createCriteria(Employee.class);
-			criteria.add(Restrictions.isNotNull("address"));
+			criteria.add(Restrictions.eqOrIsNull("fullName", "Fady Kamal"));
 			List<Employee> emps = criteria.list();
 			for(Employee e : emps) {
 				System.out.println(e.getFullName());
