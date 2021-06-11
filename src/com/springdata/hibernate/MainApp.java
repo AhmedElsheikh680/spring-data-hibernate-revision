@@ -33,11 +33,11 @@ public class MainApp {
 		// begin transaction
 		session.beginTransaction();
 		// Update EMployee
-		Employee emp = new Employee("Amira Ahmed", 25, "Egypt");
-		emp.setId(id);
-		session.update(emp);
-		// To Get Employee By ID
-//		Employee emp = session.get(Employee.class, id);
+//		Employee emp = new Employee("Amira Ahmed", 25, "Egypt");
+//		emp.setId(id);
+//		session.update(emp);
+//		 To Get Employee By ID
+		Employee emp = session.get(Employee.class, id);
 
 		// save object
 //		session.save(emp);
