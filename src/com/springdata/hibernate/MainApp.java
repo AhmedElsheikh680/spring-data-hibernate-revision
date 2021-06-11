@@ -24,6 +24,8 @@ public class MainApp {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery("from Employee");
+			query.setFirstResult(0);
+			query.setMaxResults(2);
 			List<Employee> emps = query.list();
 			for(Employee e: emps) {
 				System.out.println(e.getFullName());
