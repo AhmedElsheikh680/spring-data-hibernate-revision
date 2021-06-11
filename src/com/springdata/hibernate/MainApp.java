@@ -32,7 +32,7 @@ public class MainApp {
 		
 			session.beginTransaction();
 			Criteria criteria = session.createCriteria(Employee.class);
-			criteria.setProjection(Projections.max("id"));
+			criteria.setProjection(Projections.sum("id"));
 			List<Employee> emps = criteria.list();
 			System.out.println(emps.get(0));
 	
