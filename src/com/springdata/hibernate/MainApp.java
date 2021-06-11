@@ -21,11 +21,11 @@ public class MainApp {
 										.addAnnotatedClass(Employee.class)
 										.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
+		int id =1;
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery("from Employee");
-			query.setFirstResult(0);
-			query.setMaxResults(2);
+			Query query = session.createQuery("from Employee emp where emp.id = ?1");
+			query.setInteger(1, id);
 			List<Employee> emps = query.list();
 			for(Employee e: emps) {
 				System.out.println(e.getFullName());
