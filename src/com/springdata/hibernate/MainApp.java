@@ -22,7 +22,7 @@ public class MainApp {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			List<Employee> emps = session.createQuery("from Employee emp where fullName like 'A%'").list();
+			List<Employee> emps = session.createQuery("from Employee emp where fullName like '%i'").list();
 			for(int i=0; i<emps.size(); i++) {
 				System.out.println(emps.get(i).getFullName());
 			}
