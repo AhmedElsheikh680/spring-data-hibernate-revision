@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
@@ -28,17 +29,13 @@ public class MainApp {
 		Session session = sessionFactory.getCurrentSession();
 //		int id =1;
 		try {
-			Long [] ids = {(long) 1, (long)4, (long) 9};
+		
 			session.beginTransaction();
 			Criteria criteria = session.createCriteria(Employee.class);
-			Criterion c1 = Restrictions.eq("address", "Egypt");
-			Criterion c2 = Restrictions.eqOrIsNull("age", 22);
-			LogicalExpression or = Restrictions.or(c1, c2);
-			criteria.add(or);
+			criteria.setProjection(Projections.min("id"));
 			List<Employee> emps = criteria.list();
-			for(Employee e : emps) {
-				System.out.println(e.getFullName());
-			}
+			System.out.println(emps.get(0));
+	
 			session.getTransaction().commit();
 			
 		}catch(Exception e) {
