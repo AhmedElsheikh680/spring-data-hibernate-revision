@@ -24,7 +24,7 @@ public class MainApp {
 		int id =1;
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery("from Employee emp where emp.id = ?1 and fullName= ?2");
+			Query query = session.createQuery("from Employee emp where emp.id = ?1 or fullName= ?2");
 			query.setInteger(1, id);
 			query.setString(2, "Ahmed Mohamed");
 			List<Employee> emps = query.list();
