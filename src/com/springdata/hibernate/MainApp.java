@@ -27,7 +27,7 @@ public class MainApp {
 		try {
 			session.beginTransaction();
 			Criteria criteria = session.createCriteria(Employee.class);
-			criteria.add(Restrictions.lt("id", (long) 3));
+			criteria.add(Restrictions.between("id", (long)7, (long) 9));
 			List<Employee> emps = criteria.list();
 			for(Employee e : emps) {
 				System.out.println(e.getFullName());
