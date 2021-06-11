@@ -37,8 +37,12 @@ public class MainApp {
 //		emp.setId(id);
 //		session.update(emp);
 //		 To Get Employee By ID
-		Employee emp = session.get(Employee.class, id);
+//		Employee emp = session.get(Employee.class, id);
 
+		// Delete Employee
+		Employee emp = new Employee();
+		emp.setId((long) 3); 
+		session.delete(emp);
 		// save object
 //		session.save(emp);
 		// commmit transaction
