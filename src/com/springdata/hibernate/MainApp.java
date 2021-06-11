@@ -19,6 +19,28 @@ public class MainApp {
 										.addAnnotatedClass(Employee.class)
 										.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
+		
+		// TO Save Object
+		// Declare Object
+		Employee emp = new Employee();
+		emp.setFullName("Ahmed Elsheikh");
+		emp.setAge(25);
+		emp.setAddress("Cairo");
+		
+	
+	try {
+		// begin transaction
+		session.beginTransaction();
+		// save object
+		session.save(emp);
+		// commmit transaction
+		session.getTransaction().commit();
+	}catch(Exception e) {
+		System.out.println(e.toString());
+	}finally {
+		session.close();
+	}
+		
 
 
 		
