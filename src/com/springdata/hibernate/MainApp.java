@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
@@ -28,7 +29,7 @@ public class MainApp {
 			Long [] ids = {(long) 1, (long)4, (long) 9};
 			session.beginTransaction();
 			Criteria criteria =  session.createCriteria(Employee.class);
-			criteria.add(Restrictions.eqOrIsNull("fullName", "Fady Kamal"));
+			criteria.add(Restrictions.like("fullName", "f", MatchMode.START));
 			List<Employee> emps = criteria.list();
 			for(Employee e : emps) {
 				System.out.println(e.getFullName());
