@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,19 +25,13 @@ public class MainApp {
 //		int id =1;
 		try {
 			session.beginTransaction();
-			
-			Query q1 = session.createQuery("select Max(id) from Employee");
-			Query q2 = session.createQuery("select Min(id) from Employee");
-			Query q3 = session.createQuery("select sum(age) from Employee");
-			Query q4 = session.createQuery("select count(address) from Employee");
-			Query q5 = session.createQuery("select count(distinct address) from Employee");
-			
-			System.out.println("Max " +q1.list().get(0));
-			System.out.println("Min " + q2.list().get(0));
-			System.out.println("Sum " + q3.list().get(0));
-			System.out.println("Count " + q4.list().get(0));
-			System.out.println("Count Distinct " + q5.list().get(0));
-			
+			Criteria criteria = session.createCriteria(Employee.class);
+			criteria.setFirstResult(0);
+			criteria.setMaxResults(5);
+			List<Employee> emps = criteria.list();
+			for(Employee e : emps) {
+				System.out.println(e.getFullName());
+			}
 			session.getTransaction().commit();
 			
 		}catch(Exception e) {
@@ -107,6 +102,19 @@ public class MainApp {
 ////	e.printStackTrace();
 //////	System.out.println(e.toString());
 ////
+
+
+//Query q1 = session.createQuery("select Max(id) from Employee");
+//Query q2 = session.createQuery("select Min(id) from Employee");
+//Query q3 = session.createQuery("select sum(age) from Employee");
+//Query q4 = session.createQuery("select count(address) from Employee");
+//Query q5 = session.createQuery("select count(distinct address) from Employee");
+//
+//System.out.println("Max " +q1.list().get(0));
+//System.out.println("Min " + q2.list().get(0));
+//System.out.println("Sum " + q3.list().get(0));
+//System.out.println("Count " + q4.list().get(0));
+//System.out.println("Count Distinct " + q5.list().get(0));
 
 
 
