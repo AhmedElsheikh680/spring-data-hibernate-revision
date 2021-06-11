@@ -21,16 +21,13 @@ public class MainApp {
 										.addAnnotatedClass(Employee.class)
 										.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
-		int id =1;
+//		int id =1;
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery("from Employee emp where emp.id = :v1 or fullName= :v2");
-			query.setInteger("v1", id);
-			query.setString("v2", "Ahmed Mohamed");
-			List<Employee> emps = query.list();
-			for(Employee e: emps) {
-				System.out.println(e.getFullName());
-			}
+			
+			Query query = session.createQuery("select Max(id) from Employee");
+			System.out.println(query.list().toString());
+
 			session.getTransaction().commit();
 			
 		}catch(Exception e) {
@@ -101,5 +98,15 @@ public class MainApp {
 ////	e.printStackTrace();
 //////	System.out.println(e.toString());
 ////
+
+
+
+//Query query = session.createQuery("from Employee emp where emp.id = :v1 or fullName= :v2");
+//query.setInteger("v1", id);
+//query.setString("v2", "Ahmed Mohamed");
+//List<Employee> emps = query.list();
+//for(Employee e: emps) {
+//	System.out.println(e.getFullName());
+//}
 ////}
 
