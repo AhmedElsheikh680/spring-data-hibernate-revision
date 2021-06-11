@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.springdata.hibernate.model.Employee;
 
@@ -22,8 +23,11 @@ public class MainApp {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.createQuery("delete from Employee emp where emp.id=2").executeUpdate();
-			
+			Query query = session.createQuery("from Employee");
+			List<Employee> emps = query.list();
+			for(Employee e: emps) {
+				System.out.println(e.getFullName());
+			}
 			session.getTransaction().commit();
 			
 		}catch(Exception e) {
