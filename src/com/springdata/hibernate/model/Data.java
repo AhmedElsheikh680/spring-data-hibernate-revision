@@ -21,9 +21,7 @@ public class Data {
 	@Column(name="age")
 	private int age;
 
-	@OneToOne
-	@JoinColumn(name="id_person")
-	private Person person;
+
 	public Data() {
 		super();
 	}
