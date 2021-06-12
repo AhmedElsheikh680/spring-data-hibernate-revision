@@ -5,7 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.springdata.hibernate.model.Data;
+import com.springdata.hibernate.model.Info;
 import com.springdata.hibernate.model.Person;
+import com.springdata.hibernate.model.Student;
 
 public class Main {
 
@@ -13,19 +15,19 @@ public class Main {
 		
 		SessionFactory sessionFactory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Person.class)
-				.addAnnotatedClass(Data.class)
+				.addAnnotatedClass(Student.class)
+				.addAnnotatedClass(Info.class)
 				.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
-		
-		Data data = new Data();
-		data.setId(1);
-		Data d = session.get(Data.class, data.getId());
-		System.out.println("Age: " + d.getAge());
-		System.out.println("Name: " + d.getPerson().getName());
-		session.delete(d);
+		int id = 1;
+		Student student = new Student();
+		Student s = session.get(Student.class, id);
+		System.out.println("Name: " + s.getName());
+		for(Info i : s.getInfos()) {
+			System.out.println("Phones: "+ i.getPhoone());
+		}
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
@@ -35,3 +37,23 @@ public class Main {
 		}
 	}
 }
+
+
+//
+//Student student = new Student();
+//student.setName("Mohamed");
+//
+//Info info = new Info();
+//info.setPhoone("01124187412");
+//
+//Info info2 = new Info();
+//info2.setPhoone("01527412369");
+//
+//student.getInfos().add(info);
+//student.getInfos().add(info2);
+//
+//
+//info.setStudent(student);
+//info2.setStudent(student);
+//
+//session.save(student);
