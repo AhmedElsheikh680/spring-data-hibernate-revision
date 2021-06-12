@@ -22,7 +22,7 @@ public class Person {
 	@Column(name="name")
 	private String name;
 	
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="id_person")
 	private Data data;
 

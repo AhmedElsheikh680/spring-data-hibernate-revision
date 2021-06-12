@@ -22,9 +22,8 @@ public class Main {
 		
 		Person p = new Person();
 		p.setId(1);
-		Person person =  session.get(Person.class, p.getId());
-		System.out.println("Name: " + person.getName());
-		System.out.println("Age: "+ person.getData().getAge());
+		Person person = session.get(Person.class, p.getId());
+		session.delete(person);
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
