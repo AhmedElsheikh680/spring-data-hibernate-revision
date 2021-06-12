@@ -19,6 +19,13 @@ public class Main {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
+		Person person = new  Person();
+		person.setName("AHmed");
+		
+		Data data = new Data();
+		data.setAge(25);
+		person.setData(data);
+		session.save(person);
 		
 		session.getTransaction().commit();
 		
