@@ -19,14 +19,12 @@ public class Main {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
-		Person person = new  Person();
-		person.setName("AHmed");
 		
-		Data data = new Data();
-		data.setAge(25);
-		person.setData(data);
-		session.save(person);
-		
+		Person p = new Person();
+		p.setId(1);
+		Person person =  session.get(Person.class, p.getId());
+		System.out.println("Name: " + person.getName());
+		System.out.println("Age: "+ person.getData().getAge());
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
