@@ -23,7 +23,8 @@ public class Main {
 		Person p = new Person();
 		p.setId(1);
 		Person person = session.get(Person.class, p.getId());
-		session.delete(person);
+		person.setName("Ali");
+		person.getData().setAge(50);
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
