@@ -21,10 +21,12 @@ public class Main {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
-		int id =1;
+		int id =2;
 		Student student = new Student();
 		student = session.get(Student.class, id);
-		session.delete(student);
+		
+		System.out.println("Name: " + student.getName());
+		System.out.println("Phone: " + student.getInfos().get(0).getPhoone());
 		
 		session.getTransaction().commit();
 		
