@@ -21,13 +21,15 @@ public class Main {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
-		int id = 1;
+		int id =1;
 		Student student = new Student();
-		Student s = session.get(Student.class, id);
-		System.out.println("Name: " + s.getName());
-		for(Info i : s.getInfos()) {
-			System.out.println("Phones: "+ i.getPhoone());
-		}
+		student = session.get(Student.class, id);
+		
+		student.setName("Saad");
+		student.getInfos().get(0).setPhoone("12345");
+		student.getInfos().get(1).setPhoone("54321");
+		
+		
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
