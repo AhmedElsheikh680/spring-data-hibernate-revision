@@ -1,5 +1,6 @@
 package com.springdata.hibernate.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +22,23 @@ public class Data {
 	@Column(name="age")
 	private int age;
 
-
+	@OneToOne(mappedBy="data", cascade = CascadeType.REMOVE)
+	private Person person;
+	
 	public Data() {
 		super();
 	}
+	
+
+	public Person getPerson() {
+		return person;
+	}
+
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 
 	public int getId() {
 		return id;

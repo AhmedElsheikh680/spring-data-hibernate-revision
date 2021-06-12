@@ -20,11 +20,12 @@ public class Main {
 		try {
 		session.beginTransaction();
 		
-		Person p = new Person();
-		p.setId(1);
-		Person person = session.get(Person.class, p.getId());
-		person.setName("Ali");
-		person.getData().setAge(50);
+		Data data = new Data();
+		data.setId(1);
+		Data d = session.get(Data.class, data.getId());
+		System.out.println("Age: " + d.getAge());
+		System.out.println("Name: " + d.getPerson().getName());
+		session.delete(d);
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
