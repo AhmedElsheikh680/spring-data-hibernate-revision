@@ -27,13 +27,11 @@ public class Main {
 		int id =1;
 		try {
 		session.beginTransaction();
-		Car car = session.get(Car.class, id);
-		session.close();
-		System.out.println("Name: "+ car.getName());
-		for(Color c: car.getColors()) {
-			System.out.println("Colors: "+ c.getName() );
-		}
-
+		Car c = session.get(Car.class, id);
+		c.setName("New Car");
+		c.getColors().get(0).setName("f00");
+		c.getColors().get(1).setName("fff");
+		c.getColors().get(2).setName("f0f");
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
