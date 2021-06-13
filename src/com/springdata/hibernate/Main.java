@@ -28,10 +28,7 @@ public class Main {
 		try {
 		session.beginTransaction();
 		Car c = session.get(Car.class, id);
-		c.setName("New Car");
-		c.getColors().get(0).setName("f00");
-		c.getColors().get(1).setName("fff");
-		c.getColors().get(2).setName("f0f");
+		session.delete(c);
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
