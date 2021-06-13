@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.springdata.hibernate.model.Car;
+import com.springdata.hibernate.model.Color;
 import com.springdata.hibernate.model.Data;
 import com.springdata.hibernate.model.Info;
 import com.springdata.hibernate.model.Person;
@@ -15,18 +17,12 @@ public class Main {
 		
 		SessionFactory sessionFactory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Student.class)
-				.addAnnotatedClass(Info.class)
+				.addAnnotatedClass(Car.class)
+				.addAnnotatedClass(Color.class)
 				.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
 		try {
 		session.beginTransaction();
-		int id =2;
-		Student student = new Student();
-		student = session.get(Student.class, id);
-		
-		System.out.println("Name: " + student.getName());
-		System.out.println("Phone: " + student.getInfos().get(0).getPhoone());
 		
 		session.getTransaction().commit();
 		
