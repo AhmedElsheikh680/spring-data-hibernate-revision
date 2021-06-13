@@ -23,33 +23,17 @@ public class Main {
 				.addAnnotatedClass(Color.class)
 				.buildSessionFactory();
 		Session session = sessionFactory.getCurrentSession();
+		
+		int id =1;
 		try {
 		session.beginTransaction();
-		
-		// Save 
-		Car car1 = new Car("Car1");
-		Car car2 = new Car("Car2");
-		Car car3 = new Car("Car3");
-		/////////////
-		Color color1 = new Color("Red");
-		Color color2 = new Color("Green");
-		Color color3 = new Color("Blue");
-		////////////
-		car1.getColors().add(color1);
-		car1.getColors().add(color2);
-		car1.getColors().add(color3);
-		
-		car2.getColors().add(color1);
-		car2.getColors().add(color2);
-		car2.getColors().add(color3);
-		
-		car3.getColors().add(color1);
-		car3.getColors().add(color2);
-		car3.getColors().add(color3);
-		
-		session.save(car1);
-		session.save(car2);
-		session.save(car3);
+		Car car = session.get(Car.class, id);
+		session.close();
+		System.out.println("Name: "+ car.getName());
+		for(Color c: car.getColors()) {
+			System.out.println("Colors: "+ c.getName() );
+		}
+
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
@@ -59,6 +43,32 @@ public class Main {
 		}
 	}
 }
+
+
+// Save 
+//Car car1 = new Car("Car1");
+//Car car2 = new Car("Car2");
+//Car car3 = new Car("Car3");
+///////////////
+//Color color1 = new Color("Red");
+//Color color2 = new Color("Green");
+//Color color3 = new Color("Blue");
+//////////////
+//car1.getColors().add(color1);
+//car1.getColors().add(color2);
+//car1.getColors().add(color3);
+//
+//car2.getColors().add(color1);
+//car2.getColors().add(color2);
+//car2.getColors().add(color3);
+//
+//car3.getColors().add(color1);
+//car3.getColors().add(color2);
+//car3.getColors().add(color3);
+//
+//session.save(car1);
+//session.save(car2);
+//session.save(car3);
 
 
 //
