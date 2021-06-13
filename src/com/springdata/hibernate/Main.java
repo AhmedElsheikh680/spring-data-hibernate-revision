@@ -1,5 +1,7 @@
 package com.springdata.hibernate;
 
+import java.awt.font.TextLayout.CaretPolicy;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,6 +26,30 @@ public class Main {
 		try {
 		session.beginTransaction();
 		
+		// Save 
+		Car car1 = new Car("Car1");
+		Car car2 = new Car("Car2");
+		Car car3 = new Car("Car3");
+		/////////////
+		Color color1 = new Color("Red");
+		Color color2 = new Color("Green");
+		Color color3 = new Color("Blue");
+		////////////
+		car1.getColors().add(color1);
+		car1.getColors().add(color2);
+		car1.getColors().add(color3);
+		
+		car2.getColors().add(color1);
+		car2.getColors().add(color2);
+		car2.getColors().add(color3);
+		
+		car3.getColors().add(color1);
+		car3.getColors().add(color2);
+		car3.getColors().add(color3);
+		
+		session.save(car1);
+		session.save(car2);
+		session.save(car3);
 		session.getTransaction().commit();
 		
 		}catch(Exception e) {
